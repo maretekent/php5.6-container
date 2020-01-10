@@ -41,6 +41,8 @@ RUN	\
 	&& chmod 755 /sbin/entrypoint.sh \
     && chown www-data:www-data ${PHP_DATA_DIR} -Rf
 
+RUN docker-php-ext-install mysqli
+
 COPY ./devops/apache-conf/apache2.conf ${APACHE_CONF_DIR}/apache2.conf
 COPY ./devops/apache-conf/vhost.conf ${APACHE_CONF_DIR}/sites-enabled/app.conf
 COPY ./devops/apache-conf/php.ini  ${PHP_CONF_DIR}/apache2/conf.d/custom.ini
